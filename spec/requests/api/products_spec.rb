@@ -5,19 +5,17 @@ RSpec.describe Api::ProductsController, type: :request do
     3.times { create(:product) }
   end
 
-  describe 'GET /api/product' do
+  describe 'GET /api/products' do
     before do
-      get '/api/product'
+      get '/api/products'
     end
 
     it 'is expected to return a 200 status' do
       expect(response).to have_http_status 200
     end
 
-    it 'is expected to return a collection of products' do
-      
-      binding.pry
-      
+    it 'is expected to return three products' do
+      expect(response_json['products'].count).to eq 3
     end
   end
 end
