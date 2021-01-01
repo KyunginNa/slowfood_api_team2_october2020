@@ -20,10 +20,11 @@ RSpec.describe 'PUT /api/orders', type: :request do
     end
 
     it 'is expected to return a success message' do
-      
-      binding.pry
-      
       expect(response_json['message']).to eq 'The product has been added to your order successfully.'
+    end
+
+    it 'is expected to add another product to existing order' do
+      expect(response_json['items'].count).to eq 2
     end
 
     it 'is expected to have an id of the added product in "items"' do
