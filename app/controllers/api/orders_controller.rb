@@ -4,6 +4,6 @@ class Api::OrdersController < ApplicationController
   def create
     order = current_user.orders.create
     order.order_items.create(product_id: params[:product_id])
-    render json: { message: 'The product has been added to your order successfully.' }
+    render json: { message: 'The product has been added to your order successfully.', items: order.order_items }
   end
 end

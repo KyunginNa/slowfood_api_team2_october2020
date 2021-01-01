@@ -19,4 +19,12 @@ RSpec.describe 'POST /api/orders', type: :request do
   it 'is expected to return a success message' do
     expect(response_json['message']).to eq 'The product has been added to your order successfully.'
   end
+
+  it 'is expected to have an "items" key with the product in it' do
+    expect(response_json['items'].count).to eq 1
+  end
+
+  it 'is expected to have an id of the added product in "items"' do
+    expect(response_json['items'][0]['product_id']).to eq product.id
+  end
 end
