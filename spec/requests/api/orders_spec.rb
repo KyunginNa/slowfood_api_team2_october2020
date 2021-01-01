@@ -15,4 +15,8 @@ RSpec.describe 'POST /api/orders', type: :request do
   it 'is expected to return a 200 response status' do
     expect(response).to have_http_status 200
   end
+
+  it 'is expected to return a success message' do
+    expect(response_json['message']).to eq 'The product has been added to your order successfully.'
+  end
 end
