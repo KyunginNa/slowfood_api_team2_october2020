@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_01_012245) do
+ActiveRecord::Schema.define(version: 2021_01_01_190103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "order_items", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
@@ -39,10 +55,18 @@ ActiveRecord::Schema.define(version: 2021_01_01_012245) do
     t.json "tokens"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "sign_in_count"
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.integer "current_sign_in_ip"
+    t.integer "last_sign_in_ip"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "products"
+  add_foreign_key "orders", "users"
 end

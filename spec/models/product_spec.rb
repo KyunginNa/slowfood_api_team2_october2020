@@ -15,4 +15,8 @@ RSpec.describe Product, type: :model do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:price) }
   end
+
+  describe 'Associations' do
+    it { is_expected.to have_many :order_items }
+  end
 end
