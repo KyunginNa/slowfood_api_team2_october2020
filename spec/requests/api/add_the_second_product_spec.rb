@@ -5,7 +5,7 @@ RSpec.describe 'PUT /api/orders', type: :request do
   let(:authorized_header) { user.create_new_auth_token }
   let(:existing_order) { user.orders.create }
   let!(:product) { create(:product) }
-  let!(:product_to_add) { create(:product, name: 'Mandu') }
+  let!(:product_to_add) { create(:product, name: 'Mandu', price: 80.0) }
 
   describe 'with valid product id' do
     before do
@@ -23,12 +23,16 @@ RSpec.describe 'PUT /api/orders', type: :request do
       expect(response_json['message']).to eq 'The product has been added to your order successfully.'
     end
 
-    it 'is expected to add another product to existing order' do
-      expect(existing_order.order_items.count).to eq 2
+    it 'is expected to respond with order id' do
+      expect(response_json['order']['id']).to eq existing_order.id
     end
 
-    it 'is expected to have an id of the added product in "items"' do
-      expect(response_json['items'][1]['product_id']).to eq product_to_add.id
+    it 'is expected to respond with right amount of products' do
+      expect(response_json['order']['products'].count).to eq 2
+    end
+
+    it 'is expected to respond with right total price of products' do
+      expect(response_json['order']['total']).to eq 205.0
     end
   end
 end

@@ -6,10 +6,7 @@ class Api::OrdersController < ApplicationController
     order = current_user.orders.create
     order.order_items.create(product: product)
     if order.persisted?
-      render json: {
-        message: 'The product has been added to your order successfully.',
-        items: order.order_items
-      }, status: 201
+      render json: create_json_response(order), status: 201
     else
       render json: { message: 'Something went wrong.' }, status: 422
     end
@@ -20,12 +17,16 @@ class Api::OrdersController < ApplicationController
     product = Product.find(params[:product_id])
     new_item = order.order_items.create(product: product)
     if new_item.persisted?
-      render json: {
-        message: 'The product has been added to your order successfully.',
-        items: order.order_items
-      }, status: 201
+      render json: create_json_response(order), status: 201
     else
       render json: { message: 'Something went wrong.' }, status: 422
     end
+  end
+
+  private
+
+  def create_json_response(order)
+    json = { order: OrderSerializer.new(order) }
+    json.merge!(message: 'The product has been added to your order successfully.')
   end
 end
