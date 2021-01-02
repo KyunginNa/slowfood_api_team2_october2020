@@ -14,12 +14,17 @@ class Api::OrdersController < ApplicationController
 
   def update
     order = Order.find(params[:id])
-    product = Product.find(params[:product_id])
-    new_item = order.order_items.create(product: product)
-    if new_item.persisted?
-      render json: create_json_response(order), status: 201
+    if params[:activity]
+      order.update_attribute(:finalized, true)
+      render json: { message: 'Thank you! Your order will be ready in 20 minutes.' }
     else
-      render json: { message: 'Something went wrong.' }, status: 422
+      product = Product.find(params[:product_id])
+      new_item = order.order_items.create(product: product)
+      if new_item.persisted?
+        render json: create_json_response(order), status: 201
+      else
+        render json: { message: 'Something went wrong.' }, status: 422
+      end
     end
   end
 
