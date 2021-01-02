@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe 'PUT /api/orders', type: :request do
-  let!(:user) { create(:user) }
+  let(:user) { create(:user) }
   let(:authorized_header) { user.create_new_auth_token }
   let(:existing_order) { user.orders.create }
   let!(:product) { create(:product) }
