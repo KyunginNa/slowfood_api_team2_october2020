@@ -21,12 +21,17 @@ RSpec.describe 'POST /api/orders', type: :request do
       expect(response_json['message']).to eq 'The product has been added to your order successfully.'
     end
 
-    it 'is expected to have an "items" key with the product in it' do
-      expect(response_json['items'].count).to eq 1
+    it 'is expected to respond with order id' do
+      order = Order.last      
+      expect(response_json['order']['id']).to eq order.id
     end
 
-    it 'is expected to have an id of the added product in "items"' do
-      expect(response_json['items'][0]['product_id']).to eq product.id
+    it 'is expected to respond with right amount of products' do
+      expect(response_json['order']['products'].count).to eq 1
+    end
+
+    it 'is expected to respond with right total price of products' do
+      expect(response_json['order']['total']).to eq 125.0
     end
   end
 end
