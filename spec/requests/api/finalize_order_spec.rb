@@ -20,10 +20,6 @@ RSpec.describe 'PUT /api/orders', type: :request do
       expect(response).to have_http_status 200
     end
 
-    it 'is expected to return success message' do
-      expect(response_json['message']).to eq 'Thank you! Your order will be ready in 20 minutes.'
-    end
-
     it 'is expected to update "finalized" attribute of the order to true' do
       expect(order.reload.finalized).to eq true
     end
