@@ -9,6 +9,6 @@ class OrderSerializer < ActiveModel::Serializer
   end
 
   def total
-    object.order_items.joins(:product).sum('products.price')
+    object.calculate_amount
   end
 end
