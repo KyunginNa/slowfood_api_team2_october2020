@@ -28,6 +28,11 @@ class Api::OrdersController < ApplicationController
     end
   end
 
+  def show
+    order = Order.find(params[:id])
+    render json: order, serializer: OrderSerializer
+  end
+
   private
 
   def create_json_response(order)

@@ -31,7 +31,7 @@ RSpec.describe 'POST /api/orders', type: :request do
     end
 
     it 'is expected to respond with right total price of products' do
-      expect(response_json['order']['total']).to eq 125.0
+      expect(response_json['order']['total']).to eq 12500
     end
   end
 end

@@ -14,6 +14,7 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'devise_token_auth'
 gem 'active_model_serializers'
 gem 'stripe-rails'
+gem 'jbuilder'
 
 group :development, :test do
   gem 'coveralls', require: false

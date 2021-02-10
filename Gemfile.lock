@@ -101,6 +101,8 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
+    jbuilder (2.10.1)
+      activesupport (>= 5.0.0)
     json (2.3.0)
     jsonapi-renderer (0.2.2)
     listen (3.0.8)
@@ -241,6 +243,7 @@ DEPENDENCIES
   coveralls
   devise_token_auth
   factory_bot_rails
+  jbuilder
   listen (~> 3.0.5)
   pg (>= 0.18, < 2.0)
   pry-byebug
