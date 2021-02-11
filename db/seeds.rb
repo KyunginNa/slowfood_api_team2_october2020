@@ -3,3 +3,4 @@ Product.create({ name: 'Bibimbap', description: 'Rice with marinated beef, slice
 Product.create({ name: 'Bulgogi', description: 'Traiditional Korean dish of marinated beef', price: 15 })
 Product.create({ name: 'Sujeonggwa', description: 'Korean traditional dessert punch with cinnamon, persimmon and pine nuts', price: 5 })
 Product.create({ name: 'Hodduk', description: 'Sweet pancakes filled with brown sugar syrup', price: 7 })
+Product.create({ name: 'Mango Bingsu', description: 'Korean shaved ice with mango syrup and vanilla ice cream', price: 8 })
