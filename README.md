@@ -2,7 +2,7 @@
 
 ## Description
 
-This is an API for [Slowfood client](https://github.com/KyunginNa/slowfood_client_team2_october2020). The api authenticates users, stores products and orders data, provides payment using Stripe. It is built with Ruby on Rails(Ruby version 2.5.1).
+This is an API for [Slowfood client](https://github.com/KyunginNa/slowfood_client_team2_october2020). The api authenticates users, stores products and orders data, and provides payment functionality using Stripe. It is built with Ruby on Rails(Ruby version 2.5.1).
 
 - User registration
 - Display a list of products
